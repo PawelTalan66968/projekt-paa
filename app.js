@@ -19,7 +19,8 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
-
+const tasks = require('./routes/tasks')
+app.use(tasks.routes(), tasks.allowedMethods())
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
