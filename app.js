@@ -1,3 +1,4 @@
+const tasks = require('./routes/tasks')
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -19,8 +20,6 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
-const tasks = require('./routes/tasks')
-app.use(tasks.routes(), tasks.allowedMethods())
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
@@ -36,6 +35,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(tasks.routes(), tasks.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

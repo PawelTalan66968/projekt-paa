@@ -22,11 +22,4 @@ const createTask = async (title) => (
       !error ? resolve() : reject()
     })
   })
-)module.exports = {
-  init,
-  createTask
-}
 
-module.exports = {
-  init
-}
