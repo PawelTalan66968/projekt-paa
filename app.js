@@ -23,7 +23,7 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
-
+require('./store').init()
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()
@@ -42,4 +42,3 @@ app.on('error', (err, ctx) => {
 });
 
 module.exports = app
-require('./store').init()
